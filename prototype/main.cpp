@@ -14,7 +14,14 @@ char key[256];
 //プログラムはWinMainから実行
 int WINAPI WinMain(HINSTANCE hINstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+	// ウインドウモードで起動
 	ChangeWindowMode(TRUE);
+
+	// ウインドウのサイズを手動ではできず、且つウインドウのサイズに合わせて拡大もしないようにする
+	SetWindowSizeChangeEnableFlag(FALSE, FALSE);
+
+	// とりあえず画面大きい方がいいので一旦大きくしておく
+	SetGraphMode(1280, 1024, 32);
 
 	if (DxLib_Init() == -1) //DXライブラリ初期化処理
 	{

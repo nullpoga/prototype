@@ -17,3 +17,4 @@ define.h
 
 //extern宣言してkey配列にどこからでもアクセスできるようにする
 extern char key[256];
+
