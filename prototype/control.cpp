@@ -10,18 +10,29 @@ PLAYER.cpp
 
 CONTROL::CONTROL()
 {
-	//プレイヤクラスの生成
+	//プレイヤインスタンスの生成
 	player = new PLAYER;
+
+	//背景インスタンスの生成
+	back = new BACK;
 }
 
 CONTROL::~CONTROL()
 {
-	//プレイヤクラスの開放
+	//プレイヤインスタンスの開放
 	delete player;
+	//背景インスタンスの開放
+	delete back;
 }
 
 void CONTROL::All()
 {
+	//背景インスタンスのAll関数実行
+	back->All();
+
 	//プレイヤクラスのAll関数実行
 	player->All();
+
+	
+
 }

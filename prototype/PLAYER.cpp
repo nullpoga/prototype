@@ -1,8 +1,8 @@
 /*
 PLAYER.cpp
-概要：プレーヤ制御クラスa
+概要：プレーヤ制御クラス
 作成日：2020/05/23
-更新日：
+更新日：2020/05/24
 */
 
 #include "pch.h"
@@ -17,8 +17,8 @@ PLAYER::PLAYER()
 		MSG("プレーヤ画像の読み込みにエラーが発生しました。");
 	}
 
-	width = 29;
-	height = 40;
+	width = 64;
+	height = 64;
 
 	//移動係数の設定
 	move = 1.0f;
@@ -61,7 +61,6 @@ void PLAYER::Move()
 	//左が押下された場合
 	if (key[KEY_INPUT_LEFT] == 1) {
 		x -= (int)PLAYER_SPEED * move;
-
 	}
 	//右が押下された場合
 	if (key[KEY_INPUT_RIGHT] == 1) {
@@ -74,6 +73,21 @@ void PLAYER::Move()
 	//下が押下された場合
 	if (key[KEY_INPUT_DOWN] == 1) {
 		y += (int)PLAYER_SPEED * move;
+	}
+
+	//キャラの移動制御
+	if (x > WINDOW_SIZE_X - PLAYER_MARGIN_X) {
+		x = WINDOW_SIZE_X - PLAYER_MARGIN_X;
+	}
+	else if (x < PLAYER_MARGIN_X) {
+		x = PLAYER_MARGIN_X;
+	}
+
+	if (y > 800 - height / 2 - PLAYER_MARGIN_Y) {
+		y = 800 - height / 2 - PLAYER_MARGIN_Y;
+	}
+	else if(y<height/2+PLAYER_MARGIN_Y){
+		y = height / 2 + PLAYER_MARGIN_Y;
 	}
 
 }

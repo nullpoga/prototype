@@ -21,7 +21,7 @@ int WINAPI WinMain(HINSTANCE hINstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetWindowSizeChangeEnableFlag(FALSE, FALSE);
 
 	// ‚Æ‚è‚ ‚¦‚¸‰æ–Ê‘å‚«‚¢•û‚ª‚¢‚¢‚Ì‚Åˆê’U‘å‚«‚­‚µ‚Ä‚¨‚­
-	SetGraphMode(1280, 1024, 32);
+	SetGraphMode(600, 800, 32);
 
 	if (DxLib_Init() == -1) //DXƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ˆ—
 	{
