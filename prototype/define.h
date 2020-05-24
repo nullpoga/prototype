@@ -18,7 +18,7 @@ define.h
 #define WINDOW_SIZE_X 600
 #define WINDOW_SIZE_Y 800
 
-#define PLAYER_MARGIN_X 0
+#define PLAYER_MARGIN_X 32
 #define PLAYER_MARGIN_Y 0
 #define BACKGROUND_MARGIN 0
 

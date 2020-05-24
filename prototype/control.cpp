@@ -2,7 +2,7 @@
 PLAYER.cpp
 概要：コントロールクラス
 作成日：2020/05/23
-更新日：
+更新日：2020/05/25
 */
 
 #include "pch.h"
@@ -27,6 +27,9 @@ CONTROL::~CONTROL()
 
 void CONTROL::All()
 {
+	//描画領域を指定
+	SetDrawArea(BACKGROUND_MARGIN, BACKGROUND_MARGIN, BACKGROUND_MARGIN + 600, BACKGROUND_MARGIN + 800);
+
 	//背景インスタンスのAll関数実行
 	back->All();
 
