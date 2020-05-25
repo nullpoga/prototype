@@ -2,7 +2,7 @@
 PLAYER.cpp
 概要：プレーヤ制御クラス
 作成日：2020/05/23
-更新日：2020/05/24
+更新日：2020/05/26
 */
 
 #include "pch.h"
@@ -34,7 +34,27 @@ PLAYER::PLAYER()
 	x = 180;
 	y = 400;
 
+	//生きているかどうか
 	life = true;
+
+	//弾初期化
+	memset(shot, 0, sizeof(shot));
+
+	//弾画像読み込み
+	int shotImg = LoadGraph("img/shot.png");
+	int w, h;
+	GetGraphSize(shotImg, &w, &h);
+
+	//フラグを全部falseにしとく
+	//グラフィックハンドルと画像のサイズを代入しとく
+	for (int i = 0; i < PSHOT_NUM; ++i) {
+		shot[i].flag = false;
+		shot[i].gh = shotImg;
+		shot[i].width = w;
+		shot[i].height = h;
+	}
+
+	count = 0;
 
 }
 void PLAYER::Move()
@@ -94,6 +114,14 @@ void PLAYER::Move()
 
 void PLAYER::Draw() 
 {
+	//自機弾の描画
+	for (int i = 0; i < PSHOT_NUM; ++i) {
+		//自機弾が発生している場合描画を行う。
+		if (shot[i].flag) {
+			DrawGraph(shot[i].x - shot[i].width / 2, shot[i].y - shot[i].height / 2, shot[i].gh, TRUE);
+		}
+	}
+
 	//生きていれば描画
 	if (life) {
 		//描画
@@ -101,8 +129,42 @@ void PLAYER::Draw()
 	}
 }
 
+void PLAYER::Shot()
+{
+	//キーが押下されているかつ、6ループに1回発射
+	if (key[KEY_INPUT_Z] == 1 && count % 4 == 0) {
+		for (int i = 0; i < PSHOT_NUM; ++i) {
+			//shot[i]が画面内にいない場合
+			if (shot[i].flag == false) {
+				shot[i].flag = true;
+				shot[i].x = x;
+				shot[i].y = y;
+				break;
+			}
+		}
+	}
+
+	//弾を移動させる処理
+	for (int i = 0; i < PSHOT_NUM; ++i) {
+		//発射している弾だけ動かす
+		if (shot[i].flag) {
+			shot[i].y -= PSHOT_SPEED;
+
+			//画面外にはみだしたらフラグを戻す
+			if (shot[i].y < -10) {
+				shot[i].flag = false;
+			}
+		}
+
+	}
+
+}
+
 void PLAYER::All()
 {
 	Move();
+	Shot();
 	Draw();
+
+	++count;
 }

@@ -30,9 +30,16 @@ private:
 	//プレイヤ画像
 	int GrPlayerHandle;
 
+	//弾
+	SHOT shot[PSHOT_NUM];
+
+	//カウント
+	int count;
+
 private:
 	void Move();
 	void Draw();
+	void Shot();
 
 public:
 	PLAYER();
